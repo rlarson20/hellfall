@@ -35,3 +35,6 @@ yarn-error.log*
 pics/
 pics.zip
 keys.ts
+
+# for scrap notes you don't want polluting the repository
+local-notes/
