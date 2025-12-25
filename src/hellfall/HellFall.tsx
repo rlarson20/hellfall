@@ -3,6 +3,10 @@ import { HellfallEntry } from "./HellfallEntry";
 import { xIcon } from "@workday/canvas-system-icons-web";
 
 import { styled } from "@workday/canvas-kit-react/common";
+import {
+  SidePanel,
+  SidePanelOpenDirection,
+} from "@workday/canvas-kit-react/side-panel";
 import { PaginationComponent } from "./inputs";
 
 import { HellfallCard } from "./HellfallCard";
@@ -88,22 +92,25 @@ export const HellFall = () => {
         </RightSidebar>
       </LayoutGrid>
 
-      {!!activeCard && <StyledBackdrop onClick={() => setActiveCardFromAtom("")} />}
-      {!!activeCard && (
-        <BottomSheet open={!!activeCard}>
+      <StyledSidePanel
+        openWidth={window.screen.width > 450 ? 810 : 400}
+        openDirection={SidePanelOpenDirection.Right}
+        open={!!activeCard}
+      >
+        {!!activeCard && (
           <Card>
-              <Card.Body padding={"zero"}>
-                <SheetContainer>
-                  <ToolbarIconButton
-                    icon={xIcon}
-                    onClick={() => setActiveCardFromAtom("")}
-                  />
-                  <HellfallCard data={activeCard} />
-                </SheetContainer>
-              </Card.Body>
-            </Card>
-        </BottomSheet>
-      )}
+            <Card.Body padding={"zero"}>
+              <SPContainer>
+                <ToolbarIconButton
+                  icon={xIcon}
+                  onClick={() => setActiveCardFromAtom("")}
+                />
+                {activeCard && <HellfallCard data={activeCard} />}
+              </SPContainer>
+            </Card.Body>
+          </Card>
+        )}
+      </StyledSidePanel>
     </div>
   );
 };
@@ -158,26 +165,15 @@ const Container = styled("div")({
   flexWrap: "wrap",
   justifyContent: "center",
 });
-const StyledBackdrop = styled("div")({
+const StyledSidePanel = styled(SidePanel)({
+  zIndex: 40,
+  height: "100%",
   position: "fixed",
-  inset: 0,
-  zIndex: 50,
-  backgroundColor: "rgba(0, 0, 0, 0.6)",
-});
-
-const BottomSheet = styled("div")<{ open: boolean }>(({ open }) => ({
-  position: "fixed",
-  bottom: 0,
-  left: 0,
-  right: 0,
-  zIndex: 51,
-  transform: open ? "translateY(0)" : "translateY(100%)",
-  transition: "transform 0.3s ease-out",
-  maxHeight: "90vh",
   backgroundColor: "transparent",
-}));
-const SheetContainer = styled("div")({
-  overflowY: "auto",
-  maxHeight: "90vh",
-  padding: "16px",
+  top: "10px",
+});
+const SPContainer = styled("div")({
+  overflowY: "scroll",
+  height: "90vh",
+  overflowX: "hidden",
 });
