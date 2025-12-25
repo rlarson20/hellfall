@@ -3,10 +3,6 @@ import { HellfallEntry } from "./HellfallEntry";
 import { xIcon } from "@workday/canvas-system-icons-web";
 
 import { styled } from "@workday/canvas-kit-react/common";
-import {
-  SidePanel,
-  SidePanelOpenDirection,
-} from "@workday/canvas-kit-react/side-panel";
 import { PaginationComponent } from "./inputs";
 
 import { HellfallCard } from "./HellfallCard";
@@ -184,5 +180,4 @@ const SheetContainer = styled("div")({
   overflowY: "auto",
   maxHeight: "90vh",
   padding: "16px",
-  position: "fixed",
 });
