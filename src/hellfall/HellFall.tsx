@@ -15,7 +15,7 @@ import { ToolbarIconButton } from "@workday/canvas-kit-react/button";
 import { useAtom, useAtomValue } from "jotai";
 import { activeCardAtom, offsetAtom } from "./searchAtoms";
 import { useSearchResults } from "./useSearchResults";
-import { SearchControls } from "./SearchControls";
+import { TextSearchControls, PropertySearchControls } from "./SearchControls";
 import { SortComponent } from "./SortComponent";
 import { CHUNK_SIZE } from "./constants";
 import { useKeyPress } from "../hooks";
@@ -45,8 +45,8 @@ export const HellFall = () => {
           <LayoutGrid>
         <LeftSidebar>
           <SidebarSection>
-            <h4>Filters</h4>
-            <SearchControls />
+            <h4>Search & Tags</h4>
+            <TextSearchControls />
           </SidebarSection>
         </LeftSidebar>
 
@@ -86,7 +86,9 @@ export const HellFall = () => {
 
         <RightSidebar>
           <SidebarSection>
-            <h4>Sort & Advanced</h4>
+            <h4>Properties & Sort</h4>
+            <PropertySearchControls />
+            <br />
             <SortComponent />
           </SidebarSection>
         </RightSidebar>

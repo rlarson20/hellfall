@@ -30,27 +30,12 @@ import { colors } from "./constants";
 import { SearchCheckbox } from "./SearchCheckbox";
 import { StyledLabel, StyledLegend } from "./StyledLabel";
 
-export const SearchControls = () => {
-  const [set, setSet] = useAtom(searchSetAtom);
+export const TextSearchControls = () => {
   const [rulesSearch, setRulesSearch] = useAtom(rulesSearchAtom);
   const [nameSearch, setNameSearch] = useAtom(nameSearchAtom);
-  const [searchCmc, setSearchCmc] = useAtom(searchCmcAtom);
-  const [power, setPower] = useAtom(powerAtom);
-  const [toughness, setToughness] = useAtom(toughnessAtom);
-
-  const [legality, setLegality] = useAtom(legalityAtom);
-
   const [typeSearch, setTypeSearch] = useAtom(typeSearchAtom);
-  const [searchColors, setSearchColors] = useAtom(searchColorsAtom);
   const [creators, setCreators] = useAtom(creatorsAtom);
   const [tags, setTags] = useAtom(tagsAtom);
-  const [isCommander, setIsCommander] = useAtom(isCommanderAtom);
-  const [searchColorsIdentity, setSearchColorsIdentityAtom] = useAtom(
-    searchColorsIdentityAtom
-  );
-  const [colorComparison, setColorComparison] = useAtom(
-    searchColorComparisonAtom
-  );
 
   return (
     <SearchContainer>
@@ -93,6 +78,27 @@ export const SearchControls = () => {
           onChange={setTags}
         />
       </SearchCriteriaSection>
+    </SearchContainer>
+  );
+};
+
+export const PropertySearchControls = () => {
+  const [set, setSet] = useAtom(searchSetAtom);
+  const [searchCmc, setSearchCmc] = useAtom(searchCmcAtom);
+  const [power, setPower] = useAtom(powerAtom);
+  const [toughness, setToughness] = useAtom(toughnessAtom);
+  const [legality, setLegality] = useAtom(legalityAtom);
+  const [searchColors, setSearchColors] = useAtom(searchColorsAtom);
+  const [isCommander, setIsCommander] = useAtom(isCommanderAtom);
+  const [searchColorsIdentity, setSearchColorsIdentityAtom] = useAtom(
+    searchColorsIdentityAtom
+  );
+  const [colorComparison, setColorComparison] = useAtom(
+    searchColorComparisonAtom
+  );
+
+  return (
+    <SearchContainer>
       <SearchCriteriaSection>
         <CheckboxGroup
           label="Colors"
@@ -222,6 +228,16 @@ export const SearchControls = () => {
     </SearchContainer>
   );
 };
+
+export const SearchControls = () => {
+  return (
+    <>
+      <TextSearchControls />
+      <PropertySearchControls />
+    </>
+  );
+};
+
 const SearchCriteriaSection = styled("div")({
   justifyContent: "space-evenly",
   paddingLeft: "12px",
