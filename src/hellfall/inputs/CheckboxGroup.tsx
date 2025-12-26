@@ -47,7 +47,11 @@ export const CheckboxGroup: FC<
     </fieldset>
   );
 };
-const Container = styled.div({ display: "flex", flexDirection: "column" });
+const Container = styled.div({
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+});
 
 const CheckEntry = styled.div({
   display: "flex",

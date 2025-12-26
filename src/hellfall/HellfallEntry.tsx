@@ -30,6 +30,6 @@ const StyledImage = styled.img({
 const Container = styled.div({
   width: "250px",
   display: "inline-block",
-  padding: "5px",
+  padding: "8px",
   cursor: "pointer",
 });

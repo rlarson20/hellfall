@@ -224,7 +224,7 @@ export const SearchControls = () => {
 };
 const SearchCriteriaSection = styled("div")({
   justifyContent: "space-evenly",
-  paddingLeft: "30px",
+  paddingLeft: "12px",
 });
 const SearchContainer = styled("div")({ display: "flex", flexWrap: "wrap" });
 const StyledManaSelect = styled("select")({ width: "100px", height: "30px" });

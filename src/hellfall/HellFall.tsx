@@ -92,12 +92,12 @@ export const HellFall = () => {
         </RightSidebar>
       </LayoutGrid>
 
-      <StyledSidePanel
-        openWidth={window.screen.width > 450 ? 810 : 400}
-        openDirection={SidePanelOpenDirection.Right}
-        open={!!activeCard}
-      >
-        {!!activeCard && (
+      {activeCard && (
+        <StyledSidePanel
+          openWidth={window.screen.width > 450 ? 810 : 400}
+          openDirection={SidePanelOpenDirection.Right}
+          open={!!activeCard}
+        >
           <Card>
             <Card.Body padding={"zero"}>
               <SPContainer>
@@ -105,47 +105,44 @@ export const HellFall = () => {
                   icon={xIcon}
                   onClick={() => setActiveCardFromAtom("")}
                 />
-                {activeCard && <HellfallCard data={activeCard} />}
+                <HellfallCard data={activeCard} />
               </SPContainer>
             </Card.Body>
           </Card>
-        )}
-      </StyledSidePanel>
+        </StyledSidePanel>
+      )}
     </div>
   );
 };
 
 const LayoutGrid = styled("div")({
   display: "grid",
-  gridTemplateColumns: "240px 1fr 240px",
-  gap: "16px",
-  padding: "16px",
-  "@media (max-width: 768px)": {
+  gridTemplateColumns: "320px 1fr 320px",
+  gap: "24px",
+  padding: "24px",
+  "@media (max-width: 1200px)": {
+    gridTemplateColumns: "280px 1fr 280px",
+  },
+  "@media (max-width: 900px)": {
     gridTemplateColumns: "1fr",
   },
 });
 
 const LeftSidebar = styled("aside")({
   position: "sticky",
-  top: "16px",
+  top: "24px",
   height: "fit-content",
-  maxHeight: "calc(100vh - 32px)",
-  overflowY: "auto",
-  "@media (max-width: 768px)": {
+  "@media (max-width: 900px)": {
     position: "static",
-    maxHeight: "none",
   },
 });
 
 const RightSidebar = styled("aside")({
   position: "sticky",
-  top: "16px",
+  top: "24px",
   height: "fit-content",
-  maxHeight: "calc(100vh - 32px)",
-  overflowY: "auto",
-  "@media (max-width: 768px)": {
+  "@media (max-width: 900px)": {
     position: "static",
-    maxHeight: "none",
   },
 });
 
@@ -171,9 +168,15 @@ const StyledSidePanel = styled(SidePanel)({
   position: "fixed",
   backgroundColor: "transparent",
   top: "10px",
+  border: "none",
+  boxShadow: "none",
+  "& > div": {
+    border: "none",
+    boxShadow: "none",
+  },
 });
 const SPContainer = styled("div")({
-  overflowY: "scroll",
+  overflowY: "auto",
   height: "90vh",
   overflowX: "hidden",
 });
